@@ -7,56 +7,52 @@ from .models import Company, Quotation, Product
 from .serializers import CompanySerializer, QuotationSerializer, ProductSerializer
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 # Create your views here.
+
+class Root(generics.GenericAPIView):
+    name = 'root'
+    def get(self, request, *args, **kwargs):
+        return Response(
+            {
+                'company': reverse(CompanyRoot.name, request=request),
+                'product': reverse(ProductRoot.name, request=request),
+                'quotation': reverse(QuotationRoot.name, request=request),
+            }
+        )
 class CompanyRoot(generics.GenericAPIView):
     name = 'company-api-root'
     def get(self, request, *args, **kwargs):
        return Response(
            {
-               'compny': reverse(CompanyListAPIView.name, request=request),
+               'compny-list': reverse(CompanyListAPIView.name, request=request),
                'create-company': reverse(CompanyCreateAPIView.name, request=request),
             #    'retrive-company': reverse(CompanyRetrieveAPIView.name, request=request),
             #    'update-company': reverse(CompanyUpdateAPIView.name, request=request),
             #    'delete-company': reverse(CompanyDestroyAPIView.name, request=request),
 
+            }
+       )
+class ProductRoot(generics.GenericAPIView):
+    name = 'product-api-root'
+    def get(self, request, *args, **kwargs):
+       return Response(
+           {
                 'product': reverse(ProductListAPIView.name, request=request),
                 'create-product' : reverse(ProductCreateAPIView.name, request=request),
                 # 'retrive-product' : reverse(ProductRetrieveAPIView.name, request=request),
                 # 'update-product' : reverse(ProductUpdateAPIView.name, request=request),
                 # 'delete-product' : reverse(ProductDestroyAPIView.name, request=request),
-
+            }
+       )
+       
+class QuotationRoot(generics.GenericAPIView):
+    name = 'quotation-api-root'
+    def get(self, request, *args, **kwargs):
+       return Response(
+           {
                 'quotation': reverse(QuotationListAPIView.name, request=request),
                 'create-quotation' : reverse(QuotationCreateAPIView.name, request=request),
-                # 'retrive-quotation' : reverse(QuotationRetrieveAPIView.name, request=request),
-                # 'update-quotation' : reverse(QuotationUpdateAPIView.name, request=request),
-                # 'delete-quotation' : reverse(QuotationDestroyAPIView.name, request=request),
-           }
+            }
        )
-    
-# class QuotationRoot(generics.GenericAPIView):
-#     name = 'quotation-api-root'
-#     def get(self, request, *args, **kwargs):
-#        return Response(
-#            {
-#                'quotation': reverse(QuotationListAPIView.name, request=request),
-#                'create-quotation' : reverse(QuotationCreateAPIView.name, request=request),
-#                'retrive-quotation' : reverse(QuotationRetrieveAPIView.name, request=request),
-#                'update-quotation' : reverse(QuotationUpdateAPIView.name, request=request),
-#                'delete-quotation' : reverse(QuotationDestroyAPIView.name, request=request),
-#            }
-#        )
-
-# class ProductRoot(generics.GenericAPIView):
-#     name = 'product-api-root'
-#     def get(self, request, *args, **kwargs):
-#        return Response(
-#            {
-#                'product': reverse(ProductListAPIView.name, request=request),
-#                'create-product' : reverse(ProductCreateAPIView.name, request=request),
-#                'retrive-product' : reverse(ProductRetrieveAPIView.name, request=request),
-#                'update-product' : reverse(ProductUpdateAPIView.name, request=request),
-#                'delete-product' : reverse(ProductDestroyAPIView.name, request=request),
-#            }
-#        )    
 
 
 #Company.............

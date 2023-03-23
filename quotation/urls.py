@@ -3,11 +3,15 @@ from . import views
 
 urlpatterns = [
     # company urls
-    path('', views.CompanyRoot.as_view()),
+    path('', views.Root.as_view()),
+    # path('admin/' ),
+    path('company/', views.CompanyRoot.as_view(), name='company-api-root'),
+    path('product/', views.ProductRoot.as_view(), name='product-api-root'),
+    path('quotation/', views.QuotationRoot.as_view(), name='quotation-api-root'),
     # path('', views.QuotationRoot.as_view()),
     # path('', views.ProductRoot.as_view()),
     
-    path('compny/', views.CompanyListAPIView.as_view(), name='compines'),
+    path('compny-list/', views.CompanyListAPIView.as_view(), name='compines'),
     path('create-company/', views.CompanyCreateAPIView.as_view(), name='create-company'),
     path('retrive-company/<int:pk>/', views.CompanyRetrieveAPIView.as_view(), name='retrive-company'),
     path('update-company/<int:pk>/', views.CompanyUpdateAPIView.as_view(), name='update-company'),
